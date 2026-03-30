@@ -6,6 +6,7 @@ import authRoute from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import userRoute from "./routes/userRoute.js";
 import { protectRoute } from "./middlewares/authMiddleware.js";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 //public routes
 app.use("/api/auth", authRoute);
 
